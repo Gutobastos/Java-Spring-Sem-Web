@@ -1,8 +1,4 @@
-package br.com.alura.screenmatch.principal;
-
-import br.com.alura.screenmatch.exercicios.Divisor;
-import br.com.alura.screenmatch.exercicios.Operacao;
-import br.com.alura.screenmatch.exercicios.Palindromo;
+package br.com.alura.screenmatch.exercicios;
 
 import java.util.*;
 
