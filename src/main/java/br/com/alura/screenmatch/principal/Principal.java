@@ -28,18 +28,18 @@ public class Principal {
         List<DadosTemporada> temporadas = new ArrayList<>();
 
 		for (int i = 1 ; i <= dados.TotalTemporadas() ; i++){
-			var json4 = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&Season=" + i + APIKEY);
-			DadosTemporada dadosTemporada = conversor.obterDados(json4, DadosTemporada.class);
+			json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&Season=" + i + APIKEY);
+			DadosTemporada dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
 			temporadas.add(dadosTemporada);
 		}
 		temporadas.forEach(System.out::println);
 
-        for (int i = 0 ; i < dados.TotalTemporadas() ; i++) {
-            List<DadosEpisodio> episodiosDaTemporada = temporadas.get(i).episodios();
-            for (int j = 0 ; j < episodiosDaTemporada.size() ; j++) {
-                System.out.println("\n" + episodiosDaTemporada.get(j).titulo().toUpperCase());
-            }
-        }
-//        temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println("\n" + e.titulo().toUpperCase())));
+//        for (int i = 0 ; i < dados.TotalTemporadas() ; i++) {
+//            List<DadosEpisodio> episodiosDaTemporada = temporadas.get(i).episodios();
+//            for (int j = 0 ; j < episodiosDaTemporada.size() ; j++) {
+//                System.out.println("\n" + episodiosDaTemporada.get(j).titulo().toUpperCase());
+//            }
+//        }
+        temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println("\n" + e.titulo().toUpperCase())));
     }
 }
