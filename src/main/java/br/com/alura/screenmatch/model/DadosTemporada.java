@@ -6,5 +6,5 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record DadosTemporada(@JsonAlias("Season") int numero,
-                             @JsonAlias("Episodes")List<DadosEpisodio> episodio) {
+                             @JsonAlias("Episodes")List<DadosEpisodio> episodios) {
 }
