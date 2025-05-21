@@ -5,7 +5,6 @@ import java.util.*;
 public class ExercicioLambda {
     public static void main(String[] args) {
         Scanner leitura = new Scanner(System.in);
-        Scanner leituraTexto = new Scanner(System.in);
 
 //        LAMBDA - 1
         System.out.println("Resposta da multiplicação entre 2 valores inteiros usando LAMBDA:");
@@ -14,12 +13,13 @@ public class ExercicioLambda {
         System.out.println("#################################");
 //        LAMBDA - 2
         System.out.println("Escreva uma letra, palavras ou texto para ficar em maiúsculas: ");
-        String texto = leituraTexto.nextLine();
+        String texto = leitura.nextLine();
         System.out.println("Texto: " + texto.toUpperCase());
         System.out.println("#################################");
 //        LAMBDA - 3
         System.out.println("Informe um número para saber se é PRIMO: ");
         int numero = leitura.nextInt();
+        leitura.nextLine();
         int prova = 0;
         ArrayList<Integer> listaRestos = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class ExercicioLambda {
         System.out.println("#################################");
 //        LAMBDA - 4
         System.out.println("Informe uma palavra para verificar se é um PALÍNDROMO: ");
-        texto = leituraTexto.nextLine();
+        texto = leitura.nextLine();
         Palindromo palindromo = str -> str.contentEquals(new StringBuilder(str).reverse());
         System.out.println("O texto: " + texto.toUpperCase() + " POLÍNDROMO: "
                 + palindromo.executar(texto.toUpperCase()));  // Resultado: true ou false
@@ -61,7 +61,9 @@ public class ExercicioLambda {
             return a / b;
         };
         try {
+            System.out.println("O resultado da divisão 10 / 2: ");
             System.out.println(divisor.executaDivisao(10, 2)); // Esperado: 5
+            System.out.println("O resultado da divisão 10 / 0: ");
             System.out.println(divisor.executaDivisao(10, 0)); // Esperado: Exceção
         } catch (ArithmeticException e) {
             System.out.println(e.getMessage());
