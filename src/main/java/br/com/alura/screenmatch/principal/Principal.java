@@ -6,6 +6,9 @@ import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
+import com.fasterxml.jackson.core.io.schubfach.DoubleToDecimal;
+
+import java.io.DataOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -82,7 +85,7 @@ public class Principal {
             System.out.println("Episódio encontrado !!!");
             System.out.println("Temporada: " + episodioBuscado.get());
         } else {
-            System.out.println("Episódio não encontrado !" + episodioBuscado.get());
+            System.out.println("Episódio não encontrado na série: " + dados.titulo());
         }
 
 //        System.out.println("\n#######################################################################################\"");
@@ -100,6 +103,22 @@ public class Principal {
 //                                "Episódio: " + e.getTitulo() +
 //                                "Data de lançamento: " + e.getDataDeLancamento().format(formatador)
 //                ));
+
+        Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
+                .filter(av -> av.getAvaliacao() > 0.0)
+                .collect(Collectors.groupingBy(Episodio::getTemporada,
+                        Collectors.averagingDouble(Episodio::getAvaliacao)));
+        System.out.println("Temporadas e suas avaliações:" + avaliacoesPorTemporada);
+
+        DoubleSummaryStatistics est = episodios.stream()
+                .filter(av -> av.getAvaliacao() > 0.0)
+                .collect(Collectors.summarizingDouble(Episodio::getAvaliacao));
+        System.out.println("Estatística de média de avaliações: " + est.getAverage());
+        System.out.println("Melhor episódio com avaliação máxima: " + est.getMax());
+        System.out.println("Pior episódio com avaliação mínima: " + est.getMin());
+        System.out.println("Quantidade de episódios: " + est.getCount());
+
+
 
     }
 }
